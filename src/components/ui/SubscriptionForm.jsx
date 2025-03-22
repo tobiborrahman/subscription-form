@@ -71,32 +71,35 @@ const SubscriptionForm = () => {
 
 	return (
 		<div className="flex justify-center items-center min-h-screen bg-gray-100 p-4">
-			<Card className="max-w-md w-full p-6 shadow-lg">
+			<Card className="max-w-lg w-full p-6 shadow-lg">
 				<CardContent>
 					<h2 className="text-xl font-semibold text-center mb-4">
 						Subscribe with your Phone
 					</h2>
 					<form onSubmit={handleSubmit} className="space-y-4">
-						<select
-							value={country}
-							onChange={(e) => {
-								setCountry(e.target.value);
-								setError('');
-							}}
-						>
-							{countries.map((c) => (
-								<option key={c.code} value={c.code}>
-									{c.name}
-								</option>
-							))}
-						</select>
-						<Input
-							type="tel"
-							placeholder="Enter your phone number"
-							value={phone}
-							onChange={handlePhoneChange}
-							className="border border-gray-300 p-2 rounded-md w-full"
-						/>
+						<div className="flex flex-col md:flex-row items-center">
+							<select
+								value={country}
+								onChange={(e) => {
+									setCountry(e.target.value);
+									setError('');
+								}}
+								className="border-2 border-gray-300 py-2 px-1 rounded-sm w-full mb-3 md:mb-0 md:w-auto md:mr-3"
+							>
+								{countries.map((c) => (
+									<option key={c.code} value={c.code}>
+										{c.name}
+									</option>
+								))}
+							</select>
+							<Input
+								type="tel"
+								placeholder="Enter your phone number"
+								value={phone}
+								onChange={handlePhoneChange}
+								className="border-2 border-gray-300 !text-lg !text-black focus:outline-white py-[19px] rounded-sm w-full"
+							/>
+						</div>
 						{error && (
 							<p className="text-red-500 text-sm">{error}</p>
 						)}
@@ -114,7 +117,7 @@ const SubscriptionForm = () => {
 							<p className="mb-2 text-gray-600">
 								Scan this QR to confirm:
 							</p>
-							<QRCodeCanvas value={qrData} size={150} />
+							<QRCodeCanvas value={qrData} size={200} />
 						</div>
 					)}
 				</CardContent>
